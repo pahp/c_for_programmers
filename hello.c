@@ -7,12 +7,19 @@
 
 
 /* let's declare our 'main()' function. 
-   The declaration of a function includes its names and its arguments.
+   The declaration of a function includes its return type, its name, and its
+   arguments.
+
+   "int main()" means that main() will return an integer (the return value of
+   the program).
+
    main() has two arguments:
+
    	1) the first argument, 'argc' is an int (it's the number of parameters to main). 
 	2) The second argument, 'char *argv[]' is a pointer to an array of character strings.
    We will explain that more later, but for now, you can think that argv[] is
    an array holding any command-line arguments that our program has.
+
 */
 
 int main(int argc, char *argv[]) {
