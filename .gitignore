@@ -53,3 +53,7 @@ dkms.conf
 
 # debug information files
 *.dwo
+
+# swap and temp files
+*~
+*.swp
