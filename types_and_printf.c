@@ -2,9 +2,9 @@
 
 int main(int argc, char *argv[]) {
 
-	/******************************************
-	 * common types and printing their values *
-	 * ***************************************/
+	/***********************
+	 * common simple types *
+	 * ********************/
 
 	/* DECLARING VARIABLES
 	 * C is a strongly-typed language, like Java. This means that variables of a certain
@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
 	char character; // chars are individual characters -- single bytes
 	// we will talk about other types later!
 	
-	// ASSIGNING VALUES
+	// assigning values is similar to other languages:
 	
 	int zero = 0; // you can also declare and define a var in one step
 	wholenum=1; // whitespace is often optional, but it helps readability
@@ -33,15 +33,16 @@ int main(int argc, char *argv[]) {
 	
 	/* characters are individual 8-bit bytes, and can be assigned as a number
 	 * or as a single character offset with single quotes. E.g., */
+	
 	character = 'c'; // assigning the numeric value of character 'c'
 	character = 57;  // assigning the number 57 (which fits into 8 bits)
 	
 	/* NOTE: Strings are arrays of characters that end with a special byte.
 	 * We will discuss them later. */
 
-	/* ********************************
-	 * PRINTING VARIABLES WITH PRINTF *
-	 *********************************/
+	/* *****************************
+	 * PRINTING OUTPUT WITH PRINTF *
+	 ******************************/
 	
 	/*
 	 * printf takes a variable number of parameters. 
@@ -60,11 +61,20 @@ int main(int argc, char *argv[]) {
 
 	// Now let's try substituting in some variable values:
 
-	/* each variable type uses a different substitution symbol! */
+	/* each variable type uses a different substitution symbol (also known as 
+	 * "conversion specifiers")! 
+	 * - use %d for an int
+	 * - use %f for a real / float
+	 * - use %c for a character (or %d for the numeric value of that char)
+	 */
 	printf("wholenum: %d, realnum: %f, character: %c\n", wholenum, realnum, character);
 
 	// Note: the printf doesn't display all the digits in the float by default!
 
+	/********************
+	* FORMAT SPECIFIERS *
+	********************/
+	
 	/* you can specify the amount of padding and the precision of types by changing
 	 * the substitution symbols: */
 
@@ -161,7 +171,7 @@ int main(int argc, char *argv[]) {
 
 	/* whoa, why are some values negative while others are positive?
 	 *
-	 * It happens because signed variables can "go negative" but unsigned
+	 * This happens because signed variables can "go negative" but unsigned
 	 * variables can't.  And all variables will "wrap around" to the other end
 	 * of their range if they are under- or overflowed. This is called "modulo
 	 * arithmetic."
