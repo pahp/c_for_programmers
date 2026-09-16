@@ -109,7 +109,8 @@ int main(int argc, char *argv[]) {
 
 	/* this happens because the arguments are both ints, so C assumes the result will
 	 * also be an int. But the result (.667) is less than one, so the fractional part
-	 * is discarded -- not rounded */
+	 * is discarded. Another way to think about it is that integer division is
+	 * always rounded down. */
 
 	/* if you want floating point numbers, it's easy -- just add a .0 to at
 	 * least one of the arguments -- and change the substitution symbol! */
@@ -137,8 +138,8 @@ int main(int argc, char *argv[]) {
 	 * etc.) should always use unsigned variables, and sometimes the compiler
 	 * will enforce this.
 	 *
-	 * On systems using the gcc compiler, chars and integers are signed by
-	 * default.
+	 * The int type is guaranteed to be signed per the C standard. On systems
+	 * using the gcc compiler, chars are signed by default.
 	 */
 
  	char signedchar = 0; // assigning a char a numerical value
@@ -199,7 +200,8 @@ int main(int argc, char *argv[]) {
 	/*
 	 * What if you need an int larger than 32-bits? In that case, you want 'long long'!
 	 *
-	 * You can always see how big a type is using the sizeof() function. 
+	 * You can always see how big a type is using the sizeof() function, which
+	 * always returns the size of a type in bytes.
 	 *
 	 * Here are examples of both:
 	 */

@@ -1,5 +1,8 @@
 #include <stdio.h>
 
+/* global variables go outside and before all functions */
+unsigned int meaning_of_life = 42;
+
 /***********************
  * declaring functions *
  * ********************/
@@ -55,6 +58,20 @@ char add_int_to_char(char a, int b) {
 
 }
 
+/* you can also declare functions that 1) have no parameters and/or 2) have no
+ * return type. To do that, simply use the keyword 'void': */
+
+void print_meaning(void) {
+
+	/* this function declares no variables but can print meaning_of_life
+	 * because meaning_of_life was declared at the beginning of this file
+	 * outside any functions -- i.e., it is a global variable
+	 */
+
+	printf("The meaning of life is: %u\n", meaning_of_life);
+
+}
+
 /* main() takes in an int (the number of commandline parameters that have been
  * given), and an array of string pointers (each item in the array is a pointer
  * to a string component of the commandline input). The number of items in
@@ -76,6 +93,8 @@ int main(int argc, char *argv[]) {
 	printf("pi / 2 is: %f\n", divide_float_by_int(3.14159265, 2));
 
 	printf("%c + %d = %c\n", 'A', 13, add_int_to_char('A', 13));
+
+	print_meaning();
 
 	return 0;
 
