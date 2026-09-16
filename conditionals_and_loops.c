@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 /* this program will teach you about conditionals and loops in C 
  * I waited this far to get into these subjects so that we'd have some
@@ -175,12 +176,38 @@ int main(int argc, char *argv[]) {
 	 * the 'switch' (i.e., case) statement *
 	 * ************************************/
 
-	/* A switch statement (called a 'case' statement in bash) is a special kind of conditional. You can write equivalent if/else statements, but switch statements can be more efficient and you might see one in the wild.
+	/* A switch statement (called a 'case' statement in bash) is a special kind
+	 * of conditional. You can write equivalent if/else statements, but switch
+	 * statements can be more efficient and you might see one in the wild.
 	 *
-	 * A switch statement choose one of n paths based on the value of a variable. For our demo, we will convert the first proper argument from a string to a number, and switch based on the number.
+	 * A switch statement choose one of n paths based on the value of a
+	 * variable. For our demo, we will convert the first proper argument from a
+	 * string to a number, and switch based on the number.
 	 *
+	 /*  for more on switch/case statements: 
+	  *  https://www.geeksforgeeks.org/c/c-switch-statement/
+	  */
 
-	 /*  more: https://www.geeksforgeeks.org/c/c-switch-statement/ */
+	long int arg1;
+	if (argc > 1) { /* can only do this if there is a 1st arg */
+		arg1 = strtol(argv[1], NULL, 10); /* see string tutorial */
+	}
+
+	switch (arg1) { /* we are going to switch based on value of arg1 */
+		case 0: /* arg1 == 0 */
+			printf("The first argument (%s) converted to 0.\n", argv[1]);
+			break;
+		case 13: /* arg1 == 13 */
+			printf("The first argument (%s) converted to 13.\n", argv[1]);
+			break;
+		case 99: /* arg1 == 99 */
+			printf("The first argument (%s) converted to 99.\n", argv[1]);
+			break;
+		default: /* else */
+			printf("The argument (%s) didn't convert to 0, 13, or 99.\n", argv[1]);
+			break;
+	}
+
 	return 0;
 
 }
