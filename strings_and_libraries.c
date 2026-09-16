@@ -36,54 +36,6 @@
 int main(int argc, char *argv[]) {
 
 
-	/********************************
-	 * commandline argument strings *
-	 * (i.e., program parameters)   *
-	 * *****************************/
-
-	/* recall that argc is the number of commandline arguments and
-	 * *argv[] is an array of pointers to strings containing each command line
-	 * argument.
-	 */
-
-	/* try running this program with different numbers of commandline
-	 * arguments! You can run it without any arguments:
-	 *
-	 * ./strings_and_libraries
-	 *
-	 * ...or run it with several:
-	 *
-	 * ./strings_and_libraries foo bar baz
-	 *
-	 * NOTE: There's always at least 1 argument, which is the name of the
-	 * command being executed.
-	 */
-
-	if (argc > 1 ) {
-		printf("There are %d commandline arguments.\n", argc);
-	} else {
-		printf("There is %d commandline argument.\n", argc);
-	}
-
-	/* print out all the arguments using a for loop */
-
-	printf("The commandline arguments are:\n");
-
-	int i;
-
-	for (i = 0; i < argc; i++) {
-
-		/* print the index and the argument at argv[i] */
-		printf("argv[%d] = \"%s\"\n", i, argv[i]);
-
-		/* NOTE: to get printf to print " characters, I needed to escape them
-		 * with a backslash (\). */
-
-		/* Did you notice the %s substitution symbol? It's what you use to
-		 * insert a string in a printf format string. */
-
-	}
-
 	/**********************************
 	 * declaring and creating strings *
 	 * *******************************/
@@ -92,7 +44,10 @@ int main(int argc, char *argv[]) {
 	char foo[] = "this is a string";
 	/* this type of declaration automatically declares enough space in the
 	 * foo[] array to hold the quoted string */
-	printf("foo says: \"%s\"\n", foo);
+	printf("foo says: \"%s\"\n", foo); 
+	/* %s is the substitution for a string. Notice that I had to escape the
+	 * double-quote above in order to print it inside of a double-quoted string
+	 * */
 
 
 	/* the hard way */
