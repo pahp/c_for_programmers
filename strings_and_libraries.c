@@ -291,19 +291,22 @@ int main(int argc, char *argv[]) {
 	snprintf(numberstring, 255, "%ld", number); /* prints number *into* numberstring */
 	printf("I converted %ld back from a number to a string and got \"%s\"\n", number, numberstring);
 
-	/* That about covers it for strings... remember always make sure that buffers (arrays) have enough space for the characters, and that the end of the array always has a null byte! 
-	 *
-	 * One way that I like to approach this is to declare a variable in my code like this:
-	 */
+	/* *********************************
+	 * tip for managing string lengths *
+	 * ********************************/
+
+	 /* One way that I like to approach this is to declare a variable in my
+	  * code like this:
+	  */
 
 	unsigned int slen = 64;
 
 	/* ... and then use that to determine the size of every string buffer where
 	 * I might modify the string: */
 
-	char buf1[slen];
+	char buf1[slen]; // a 64 byte array!
 	/* ... */
-	char bufn[slen];
+	char bufn[slen]; // another 64 byte array!
 
 	/* In this way, I know that all strings are 64 bytes long, so I always know
 	 * a good number to use for 'nbytes' in string functions like the ones
@@ -312,4 +315,8 @@ int main(int argc, char *argv[]) {
 	 * memory now.
 	 */
 
+	/* That about covers it for strings... remember always make sure that
+	 * buffers (arrays) have enough space for the characters, and that the end
+	 * of the array always has a null byte! 
+	 */
 }
