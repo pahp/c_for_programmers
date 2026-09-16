@@ -1,13 +1,111 @@
 #include <stdio.h>
 
+/* this program will teach you about conditionals and loops in C 
+ * I waited this far to get into these subjects so that we'd have some
+ * interesting comparisions and loops to demonstrate. 
+ */
+
 int main(int argc, char *argv[]) {
 
-	/*********
-	 * loops *
-	 * ******/
+	/********************************
+	 * commandline argument strings *
+	 * (i.e., program parameters)   *
+	 * *****************************/
+
+	/* recall that argc is the number of commandline arguments and
+	 * *argv[] is an array of pointers to strings containing each command line
+	 * argument.
+	 */
+
+	/* try running this program with different numbers of commandline
+	 * arguments! You can run it without any arguments:
+	 *
+	 * ./strings_and_libraries
+	 *
+	 * ...or run it with several:
+	 *
+	 * ./strings_and_libraries foo bar baz
+	 *
+	 * NOTE: There's always at least 1 argument, which is the name of the
+	 * command being executed.
+	 */
+
+	/***************************************************
+	 * comparison operators and conditional statements *
+	 * ************************************************/
+
+	/* here is an if, else if, else statement to help us be grammatically
+	 * correct */
+
+	if (argc == 0) {
+
+		printf("Impossible. But lets us demo if, else if, and else.\n");
+
+	} else if (argc == 1 ) {
+
+		printf("There is 1 command line argument.\n");
+
+	} else {
+
+		printf("There are %d command line arguments.\n", argc);
+
+	}
+
+	/* common numeric comparison operators in C:
+	 * equality: ==
+	 * inequality: !=
+	 * less than: <
+	 * less or equal: <=
+	 * greater than: >
+	 * greater or equal: >=
+	 *
+	 * Be careful not to use = instead of == -- it will happy do assignment!
+	 *
+	 * For comparing strings, you need to use functions like strncmp().
+	 * If you try to compare two strings like this: (str1 == str2) it will
+	 * compare their pointer values, which almost certainly is not what you
+	 * want!
+	 */
+
+
+	/***********************
+	 * the mighty for loop *
+	 * ********************/
+
+	printf("The commandline arguments are:\n");
+
+	/* print out all the CLI arguments using a for loop
+	 *
+	 * Three things happen here:
+	 * 1. i is set to 0 to start the loop
+	 * 2. the loop will run WHILE i < 9
+	 * 3. increment i (i++) each time
+	 *
+	 * (I could also have written i = i + 1 but i++ is a common shorthand.)
+	 *
+	 */
+
+	int i;
+
+	for (i = 0; i < argc; i++) { // initial, condition, increment
+
+		/* print the index and the argument at argv[i] */
+		printf("argv[%d] = \"%s\"\n", i, argv[i]);
+
+		/* NOTE: to get printf to print " characters, I needed to escape them
+		 * with a backslash (\). */
+
+		/* Did you notice the %s substitution symbol? It's what you use to
+		 * insert a string in a printf format string. */
+
+	}
+
+
+	/***************
+	 * while loops *
+	 * ************/
 	 	 
 	int x = 0;
-	int i;
 
 	/* here is a 'while' loop in C */
 	
@@ -22,27 +120,11 @@ int main(int argc, char *argv[]) {
 	printf("i = %d\n", i); // i should = 10
 	
 	
-	/* We can also do 'for' loops:
-	 *
-	 * Three things happen here:
-	 * 1. i is set to 0 to start the loop
-	 * 2. the loop will run WHILE i < 9
-	 * 3. increment i (i++) each time
-	 *
-	 * (I could also have written i = i + 1 but i++ is a common shorthand.)
-	 *
-	 */
 	
+	/* a for loop with a conditional inside! */
+
 	for (i = 0; i < 9; i++) {
 
-		
-		/*****************
-		 * Conditionals! *
-		 ****************/
-		
-		/* C, of course, has if, then and else if statements.
-		 * They work pretty much the way you'd expect. */
-		
 		/* % (percent) in a math context is the modulo operator.
 		 * i.e., 4 % 2 = 0, because 4 is divided evenly by 2.
 		 */
@@ -56,39 +138,49 @@ int main(int argc, char *argv[]) {
 	}
 
 				   
-       /* continue and break
-	* loops in C can be manipulated using 'continue' and 'break'	
-	* 'continue' -- skip the rest of this loop, but keep looping
-	* 'break' -- quit the loop altogether and keep executing
-	*
-	* here's an example!
-	*/
+	/* ********************
+	 * continue and break *
+	 * *******************/
 
-	for (i = 0; i < 9; i++) {
+	/* loops in C can be manipulated using 'continue' and 'break'	
+	 * 'continue' -- skip the rest of this loop, but keep looping 'break' --
+	 * quit the loop altogether and keep executing
+	 *
+	 * Let's loop over the CLI arguments with some weird conditionals
+	 */
 
-		/*********************
-		 * this is terrible peter, fix it!
-		 *************************/
+	for (i = 0; i < argc; i++) {
 
-		if (i == 9) {
+		if (argv[i][0] == 'a') {
+			/* The first character of the current argument is an 'a' */
+			printf("Argument %d starts with 'a', and it's: \"%s\"\n", i, argv[i]);
 
-			// the for loop says we'll go until 10, but let's quit when we get to 9
-			printf("i == %d, let's quit the for loop!\n", i);
-			break; // quit the for loop (this is weird code, but it's just an example)
+		} else if (argv[i][1] == 'a') {
+			/* Don't print an argument if the 2nd character is 'a'. */
+			continue; // skip to the next loop iteration
 
-		} else if (i % 2 != 0) {
-			/* note I tested if i % 2 is NOT equal to 0!
-			 * you can use all the normal comparators, like:
-			 * <, >, <=, >=, ==, and !=
-			 * These operators do NOT work for strings... we'll discuss that later!
-			 */
-			continue; // if the number is odd, skip this loop
+		} else if (argv[i][0] == 'x') {
+			/* Quit the loop if the first character of the current argument is
+			 * an 'x' */
+			printf("Argument %d starts with 'x' -- quitting...\n", i);
+			break; // quit out of the loop
+		} else {
+			printf("Argument %d is: \"%s\"\n", i, argv[i]);
 		}
 
-		printf("The number %d must be even, because we skipped all odd loops!\n", i);
-	
 	}
+	printf("I'm done printing arguments now.\n");
 
+	/* *************************************
+	 * the 'switch' (i.e., case) statement *
+	 * ************************************/
+
+	/* A switch statement (called a 'case' statement in bash) is a special kind of conditional. You can write equivalent if/else statements, but switch statements can be more efficient and you might see one in the wild.
+	 *
+	 * A switch statement choose one of n paths based on the value of a variable. For our demo, we will convert the first proper argument from a string to a number, and switch based on the number.
+	 *
+
+	 /*  more: https://www.geeksforgeeks.org/c/c-switch-statement/ */
 	return 0;
 
 }
