@@ -2,51 +2,61 @@
 
 int main(int argc, char *argv[]) {
 
-	/**************************
-	 * conditionals and loops *
-	 * ***********************/
-
+	/*********
+	 * loops *
+	 * ******/
+	 	 
 	int x = 0;
 	int i;
-	
-	/* this is a for loop in C. Three things happen here:
-	 * 1. i is set to 0 to start the loop
-	 * 2. the loop will run WHILE i < 9
-	 * 3. increment i (i++) each time
-	 *
-	 * (I could also have written i = i + 1 but this is a common shorthand.)
-	 *
-	 */
-	
-	for (i = 0; i < 9; i++) {
 
-		/* the modulo operator --
-		 * % (the percent sign) in a math context is the mod operator. 
-		 * i.e., 4 % 2 = 0, because 4 is divided evenly by 2.
-		 */
-
-		if (i % 2 == 0) {
-			printf("%d is even!\n", i);
-		} else  {
-			printf("%d is odd!\n", i);
-
-		}
-
-	}
-
-	// we could also use while loops
+	/* here is a 'while' loop in C */
 	
 	i = 0;
 
-	while (i < 10) {
+	while (i < 10) { // do this until i is not < 10
 
 		i++;
 
 	}
 
 	printf("i = %d\n", i); // i should = 10
-						   
-   /* continue and break
+	
+	
+	/* We can also do 'for' loops:
+	 *
+	 * Three things happen here:
+	 * 1. i is set to 0 to start the loop
+	 * 2. the loop will run WHILE i < 9
+	 * 3. increment i (i++) each time
+	 *
+	 * (I could also have written i = i + 1 but i++ is a common shorthand.)
+	 *
+	 */
+	
+	for (i = 0; i < 9; i++) {
+
+		
+		/*****************
+		 * Conditionals! *
+		 ****************/
+		
+		/* C, of course, has if, then and else if statements.
+		 * They work pretty much the way you'd expect. */
+		
+		/* % (percent) in a math context is the modulo operator.
+		 * i.e., 4 % 2 = 0, because 4 is divided evenly by 2.
+		 */
+
+		if (i % 2 == 0) { 
+			printf("%d is even!\n", i);
+		} else  {
+			printf("%d is odd!\n", i);
+		}
+		
+	}
+
+				   
+       /* continue and break
 	* loops in C can be manipulated using 'continue' and 'break'	
 	* 'continue' -- skip the rest of this loop, but keep looping
 	* 'break' -- quit the loop altogether and keep executing
