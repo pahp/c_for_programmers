@@ -1,5 +1,36 @@
 #include <stdio.h>
 
+/**********
+ * MACROS *
+ * *******/
+
+/* Macros are a way of assigning a piece of text to a NAME (the names don't
+ * have to be capitalized, but they often are as an aid to readability). When
+ * you compile your source, the C preprocessor will replace all the ocurrences
+ * of NAME with the text data. Only then will it actually compile the code.
+ * Since macros are not variables, they cannot be changed through assignment.
+ *
+ * Macros have a lot of really cool uses -- including many we won't be able to cover here.
+ *
+ * To define a macro, start a line with '#define', then the name (no spaces),
+ * and then the text to use. 
+ *
+ * There's a lot to learn about macros, if you're interested:
+ *
+ * - https://www.tutorialspoint.com/cprogramming/c_macros.htm
+ * - https://stackoverflow.com/questions/39821164/how-do-you-define-a-multiline-macro-in-c
+ *
+ * Anyway, we will use these macro values later in the program (they are
+ * globally available because they aren't variables, they're text
+ * substitutions).
+ */
+
+#define MAGIC_WORD "Elbereth" // https://nethackwiki.com/wiki/Elbereth
+#define MAGIC_NUMBER 0xdeadbeef
+
+/* notice that macros do NOT end in semicolons -- because they're not C! */
+
+
 int main(int argc, char *argv[]) {
 
 	/***********************
@@ -85,9 +116,22 @@ int main(int argc, char *argv[]) {
 
 	// whoa, floats are weird, that is not the number I put into realnum!
 	
+	/* macros and printf */
+
+	/* Remember our macros from before? We can print them, too. Remember that the NAME of the macro is replaced with the data / text part of the macro before the code is compiled.
+	 */
+
+	printf("The magic word is: %s\n", MAGIC_WORD); /* %s is for strings, more later! */
+	printf("The magic number is: %08x\n", MAGIC_NUMBER); /* %08x is for hex */
+
+	/* there are macros that are automatically available with some useful information... */
+
+	printf("This printf is in %s at line %d.\n", __FILE__, __LINE__);
+	
 	/* printf can perform and display the results of calculations: */
-	printf("realnum - wholenum: %f\n", realnum - wholenum);
-	printf("wholenum - realnum: %f\n", wholenum - realnum);
+	printf("%s:%d realnum - wholenum: %f\n", __FILE__, __LINE__, realnum - wholenum);
+	printf("%s:%d wholenum - realnum: %f\n", __FILE__, __LINE__, wholenum - realnum);
+	/* __FILE__ and __LINE__ can be really useful when "printf debugging" */
 
 	/* note that the result type must match the printf! This won't work: */
 
