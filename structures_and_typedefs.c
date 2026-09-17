@@ -1,9 +1,19 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include <stdbool.h> /* we are going to use the boolean type! */
 #include <string.h>
+#include <time.h>
 
 #define MAXLEN 128 /* I'll make all strings a multiple of MAXLEN */
 #define MAXSTR 127 /* longest possible string in this buffer */
+
+
+/* we will use these later */
+
+char *firstnames[] = {"Alex", "Sally", "Blasto", "Ceefax", "Peter", "John", "Amy", "Cassandra", "Liz", "Jennifer-Vanessa"};
+char *lastnames[] = {"Mc", "Smith", "Lee", "Jones", "Garcia", "Peterson", "Frank", "Johnson", "Gorbachev", "Jingleheimer-Schmidt"};
+
+
 
 /***************************
  * TYPEDEFS and STRUCTURES *
@@ -80,38 +90,10 @@ struct contact_card {
 
 /* function to print the members of a contact_card 
  * This function has one argument, a pointer to an existing card!
+ *
+ * Declared here, but defined after main().
  */
-void print_card(struct contact_card *card) {
-
-	/* When calling this function, you provide it a pointer to an existing
-	 * card. Inside this function, that card is accessed through the pointer
-	 * *card.
-	 *
-	 * When working with pointers to structures, you access using an arrow (->)
-	 * instead of a dot. Otherwise, it's basically the same.
-	 */
-
-	printf("\n");
-	printf("CONTACT CARD PRINTER 2000 v0.57a:\n");
-	printf("---------------------------------\n");
-
-	if (card->firstname != NULL) { /* you can't print a null pointer */
-		printf("Firstname: %s\n", card->firstname);
-	}
-	if (card->lastname != NULL) { /* you can't print a null pointer */
-		printf("Lastname: %s\n", card->lastname);
-	}
-	printf("Age: %f\n", card->age);
-	printf("Birthday: %d-%d-%d\n", card->birthyear, card->birthmonth, card->birthdaynum);
-	if (card->likes_cilantro) {
-		printf("%s likes cilantro.\n", card->firstname);
-	} else {
-		printf("%s dislikes cilantro.\n", card->firstname);
-	}
-	printf("\n");
-
-	/* void functions don't return anything */
-}
+void print_card(struct contact_card *card);
 
 int main(int argc, char *argv[]) {
 
@@ -152,6 +134,102 @@ int main(int argc, char *argv[]) {
 
 	print_card(&card1);
 
+	/* *******************************************
+	 * struct typedefs and arrays of structures! *
+	 * ******************************************/
+
+	/* Once a structure has been defined, the compiler knows how much space each structure of that type will require, and that's all that the compiler needs to be able to make an array of structures.
+	 *
+	 * Additionally, you can typedef a particular structure, to give it a more
+	 * friendly name, if you like. (Note: defining a type for the struct isn't
+	 * necessary for making arrays, but I'm combining the two steps here.)
+	 *
+	 * Let's typedef our struct contact_card, and then let's make an array of them:
+	 */
+
+	typedef struct contact_card ccard;
+
+	/* now we can make an array of ccards */
+
+	ccard rolodex[128];
+
+	/* let's set all that memory to \0 */
+	memset(rolodex, '\0', sizeof(ccard) * 128);
+
+
+	/* let's randomly fill all 128 cards */
+
+	int i = 0;
+	int name_index;
+
+	/* The C RNG rand() is not cryptographically secure! It's also not
+	 * cryptographically secure to use the time of execution as the seed for
+	 * the RNG. But we don't care about that in this case. */
+	srand(time(NULL)); // seed RNG with current UNIX time in seconds
+
+	for (i = 0; i < 128; i++) {
+
+		name_index = (rand() % 10); // rand() is NOT cryptographically secure!
+		strncpy(rolodex[i].firstname, firstnames[name_index], MAXSTR);
+		
+		name_index = (rand() % 10);
+		strncpy(rolodex[i].lastname, lastnames[name_index], MAXSTR);
+	
+		/* lastname "Mc" is a special case, let's have some fun */	
+		if (name_index == 0) {
+			strncat(rolodex[i].lastname, rolodex[i].firstname, (MAXSTR - strlen(rolodex[i].lastname)));
+			strncat(rolodex[i].lastname, "erson", (MAXSTR - strlen(rolodex[i].lastname)));
+		}
+
+		rolodex[i].age = (rand() % 100) * 1.0 + (rand() % 100) / 1000.0;
+		/* age is obviously not calculated based on the birthdate and current
+		 * date... but if you're feeling ambitious, it could be... */
+
+		rolodex[i].birthyear = (rand() % 150) + 1900;
+		rolodex[i].birthmonth = (rand() % 12) + 1;
+		rolodex[i].birthdaynum = (rand() % 30) + 1; /* waves hands */
+
+		rolodex[i].likes_cilantro = false; /* false is the default */
+		if ((rand() % 2) == 0) {
+			rolodex[i].likes_cilantro = true;
+		}
+
+		print_card(&rolodex[i]);
+
+	}
+
+
+
 	return 0;
 
 }
+
+void print_card(struct contact_card *card) {
+
+	/* When calling this function, you provide it a pointer to an existing
+	 * card. Inside this function, that card is accessed through the pointer
+	 * *card.
+	 *
+	 * When working with pointers to structures, you access members using an arrow (->)
+	 * instead of a dot, e.g., struct->member -- Otherwise, it's basically the same.
+	 */
+
+	printf("\n");
+	printf("CONTACT CARD PRINTER 2000 v0.57a:\n");
+	printf("---------------------------------\n");
+
+	printf("Firstname: %s\n", card->firstname);
+	printf("Lastname: %s\n", card->lastname);
+	printf("Age: %f\n", card->age);
+	printf("Birthday: %d-%d-%d\n", card->birthyear, card->birthmonth, card->birthdaynum);
+	if (card->likes_cilantro) {
+		printf("Likes cilantro.\n");
+	} else {
+		printf("Dislikes cilantro.\n");
+	}
+	printf("\n");
+
+	/* void functions don't return anything */
+}
+
+
