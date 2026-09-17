@@ -82,13 +82,16 @@ int main(int argc, char *argv[]) {
 	printf("%s\n", word);
 
 	/* Here's a way to create READ-ONLY strings */
-	char *baz = "this is a read-only string";
+	const char *baz = "this is a read-only string";
 	printf("%s\n", baz);
 
 	/* baz cannot be modified, because this type of declaration puts the text
 	 * of baz not on the stack, but into the read-only portion of the binary
 	 * (technically called the '.rodata' section, which can be thought of as
-	 * the 'data' portion of the 'code' segment.  
+	 * the 'data' portion of the 'code' segment. The 'const' keyword makes it
+	 * explicit that this array *cannot* be modified. You don't need to have
+	 * 'const' here, but the array is read-only either way, so it seemed like a
+	 * good idea to just make it explicit.
 	 *
 	 * So, if you want to declare an array of length SIZE but you don't know
 	 * what will be in it yet, use this method:
