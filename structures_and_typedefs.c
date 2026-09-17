@@ -77,7 +77,8 @@ struct contact_card {
 	bool likes_cilantro;
 }; /* <--- notice this sneaky semi-colon! It's required */
 
-/* Now, any contact_card I declare will have the named elements, and I can sort of access the elements the way you might access the properties of an object.
+/* Now, any contact_card I declare will have the named elements, and I can sort
+ * of access the elements the way you might access the properties of an object.
  *
  * Exactly how you access those elements depends on whether the struct variable
  * is a pointer to the structure, or whether it is the structure itself. This
@@ -138,13 +139,16 @@ int main(int argc, char *argv[]) {
 	 * struct typedefs and arrays of structures! *
 	 * ******************************************/
 
-	/* Once a structure has been defined, the compiler knows how much space each structure of that type will require, and that's all that the compiler needs to be able to make an array of structures.
+	/* Once a structure has been defined, the compiler knows how much space
+	 * each structure of that type will require, and that's all that the
+	 * compiler needs to be able to make an array of structures.
 	 *
 	 * Additionally, you can typedef a particular structure, to give it a more
 	 * friendly name, if you like. (Note: defining a type for the struct isn't
 	 * necessary for making arrays, but I'm combining the two steps here.)
 	 *
-	 * Let's typedef our struct contact_card, and then let's make an array of them:
+	 * Let's typedef our struct contact_card, and then let's make an array of
+	 * them:
 	 */
 
 	typedef struct contact_card ccard;
