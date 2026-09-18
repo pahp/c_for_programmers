@@ -5,7 +5,6 @@
 /* this is a 
    multi-line comment */
 
-
 /* let's declare our 'main()' function. 
    The declaration of a function includes its return type, its name, and its
    arguments.
@@ -27,17 +26,19 @@ int main(int argc, char *argv[]) {
 	// Let's print "Hello, World!" and start a new line.
 	printf("Hello, World!\n");
 	
-	return 0; // return to the calling function without error (0)
+	return 0; 
+	/* return to the calling function without error (0)... but there is no
+	 * calling function, so the program terminates! */
 
 }
 
-// there is no calling function, so the program terminates!
 
-/* TASK 1: Compile and execute the code!
+/* Compile and execute the code!
 
    To compile the code, save your source code, and then run:
 
-   gcc hello.c -o hello
+   gcc hello.c -o hello 
+   (Use this approach for all other programs unless told otherwise)
    
    If you have errors, fix them and try again!
    
@@ -47,15 +48,3 @@ int main(int argc, char *argv[]) {
    
    If you forget the "-o hello" part, it will name the binary "a.out".
 */
-
-/* TASK 2: Newline characters!
-
-   The '\n' at the end of the printf input makes the terminal start a new
-   line after the printf. This makes the command prompt start on a "new line."
-      
-   See what happens if you remove the '\n' from the string. You'll need to save
-   your changes, recompile the code, and re-run it to see the change.
-   
-   What happens if you put two newlines at the end of the printf?
-*/
-
