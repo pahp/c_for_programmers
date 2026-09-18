@@ -50,7 +50,12 @@ void print_a_MegaIntTM(void) { // returns nothing, needs nothing
 
 }
 
-/* for more information about typedefs, see:
+/* In OS code, typedefs are often used to give meaningful names to types that
+ * are used for a specific purpose. For example, in OS code, you might see 
+ * 'typedef unsigned int uid_t' (UID means user ID) so that you KNOW that
+ * variables of type uid_t are for storing user IDs.
+ *
+ * for more information about typedefs, see:
  * https://www.geeksforgeeks.org/c/typedef-in-c/
  */
 
@@ -88,6 +93,22 @@ struct contact_card {
  * * For more information on C structures, see:
  * https://www.geeksforgeeks.org/c/structures-c/
  */
+
+/* *****************
+ * struct typedefs *
+ * ****************/
+
+/* 
+ * Additionally, you can typedef a particular structure, to give it a more
+ * friendly name, if you like. Defining a type for the struct isn't
+ * necessary, but it is nice because you don't have to write 'struct' every
+ * time.
+ *
+ * Let's typedef our struct contact_card, and then let's make an array of
+ * them:
+ */
+
+typedef struct contact_card ccard;
 
 /* function to print the members of a contact_card 
  * This function has one argument, a pointer to an existing card!
@@ -135,25 +156,13 @@ int main(int argc, char *argv[]) {
 
 	print_card(&card1);
 
-	/* *******************************************
-	 * struct typedefs and arrays of structures! *
-	 * ******************************************/
+	/* arrays of structures! */
 
 	/* Once a structure has been defined, the compiler knows how much space
 	 * each structure of that type will require, and that's all that the
-	 * compiler needs to be able to make an array of structures.
-	 *
-	 * Additionally, you can typedef a particular structure, to give it a more
-	 * friendly name, if you like. (Note: defining a type for the struct isn't
-	 * necessary for making arrays, but I'm combining the two steps here.)
-	 *
-	 * Let's typedef our struct contact_card, and then let's make an array of
-	 * them:
-	 */
-
-	typedef struct contact_card ccard;
-
-	/* now we can make an array of ccards */
+	 * compiler needs to be able to make an array of structures. So, even
+	 * though structures can be quite complex, we can make arrays out of them!
+ 	 */
 
 	ccard rolodex[128];
 
