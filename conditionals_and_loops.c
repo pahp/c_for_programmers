@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 /* this program will teach you about conditionals and loops in C 
  * I waited this far to get into these subjects so that we'd have some
@@ -68,6 +69,23 @@ int main(int argc, char *argv[]) {
 	 * want!
 	 */
 
+	/************************************
+	 * logical operators in comparisons *
+	 * **********************************/
+
+	/* In C, the logical operators for comparisons are && (logical AND) and ||
+	 * (logical OR). You can combine these operators, along with
+	 * ((parenthetical) grouping) just like you would expect in other
+	 * languages.
+	 */
+
+	if ((argc > 1) && strncmp(argv[1], "xyzzy", 5) == 0) {
+		printf("8D -- The first command-line parameter was 'xyzzy'!\n");
+	} else {
+		printf(":< -- I didn't get the input I wanted.\n");
+		printf("See line %d... can you do what it takes to win?\n", __LINE__ - 2);
+	}
+
 
 	/***********************
 	 * the mighty for loop *
@@ -124,7 +142,8 @@ int main(int argc, char *argv[]) {
 	
 	/* a for loop with a conditional inside! */
 
-	for (i = 0; i < 9; i++) {
+	printf("\nLoop through the numbers between 0 and 9 and determine if they're even or odd.\n");
+	for (i = 0; i < 10; i++) {
 
 		/* % (percent) in a math context is the modulo operator.
 		 * i.e., 4 % 2 = 0, because 4 is divided evenly by 2.
@@ -146,9 +165,10 @@ int main(int argc, char *argv[]) {
 	/* loops in C can be manipulated using 'continue' and 'break'	
 	 * 'continue' -- skip the rest of this loop, but keep looping 'break' --
 	 * quit the loop altogether and keep executing
-	 *
-	 * Let's loop over the CLI arguments with some weird conditionals
 	 */
+
+	printf("\nLet's loop over the CLI arguments with some weird conditionals.\n");
+	printf("See the code below line %d... can you trigger its logic?\n", __LINE__);
 
 	for (i = 0; i < argc; i++) {
 
@@ -193,6 +213,7 @@ int main(int argc, char *argv[]) {
 		arg1 = strtol(argv[1], NULL, 10); /* see string tutorial */
 	}
 
+	printf("\nLet's use a switch statement to test the numeric value of the 1st argument.\n");
 	switch (arg1) { /* we are going to switch based on value of arg1 */
 		case 0: /* arg1 == 0 */
 			printf("The first argument (%s) converted to 0.\n", argv[1]);
