@@ -133,7 +133,10 @@ int main(int argc, char *argv[]) {
 	 * other types of casts *
 	 * *********************/
 
-	/* Sometimes, you might cast a larger data type to a smaller data type to interact with it in a different way. For example, by casting an int to a character array, I can change the number by manipulating the character array.
+	/* Sometimes, you might cast a larger data type to a smaller data type to
+	 * interact with it in a different way. For example, by casting an int to a
+	 * character array, I can change the number by manipulating the character
+	 * array.
 	 */
 
 	int integer = 1000;

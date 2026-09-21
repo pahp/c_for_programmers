@@ -90,11 +90,12 @@ int main(int argc, char *argv[]) {
 	 * pointers to any types we want. E.g.: */
 
 	char c = 'c';
-	char *cptr = &c;
+	char *cptr = &c; /* this declares a pointer and assigns it to &c */
 	float f = 3.14;
 	float *fptr = &f;
-
-	/* ^--- is how you declare and point a pointer in one step. 
+	/* ^--- is how you declare and point a pointer in one step. It can be
+	 * confusing, because it looks like the pointers are being dereferenced --
+	 * but they're not (because they are being declared).
 	 *
 	 * Below, we print a couple different variables and pointers to those
 	 * variables (it all should work as expected)
