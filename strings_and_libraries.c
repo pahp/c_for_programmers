@@ -96,7 +96,7 @@ int main(int argc, char *argv[]) {
 	 * So, if you want to declare an array of length SIZE but you don't know
 	 * what will be in it yet, use this method:
 	 *
-	 * char *string[SIZE];  // char array of exactly SIZE bytes
+	 * char string[SIZE];  // char array of exactly SIZE bytes
 	 *
 	 * If you know what you want its starting value and length to be, but you
 	 * might want to change it, use this method:
