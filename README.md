@@ -13,3 +13,5 @@ You can code, but you need to use C for the first time. What do you need to know
  * [`structures_and_typedefs.c`](structures_and_typedefs.c) -- Make up your own things
  * [`void_and_casting.c`](void_and_casting.c) -- Transmutation Magic
  * [`bitwise.c`](bitwise.c) -- Nitty-gritty operations
+ * [`files.c`](files.c) -- Working with files
+ * [`sepcomp_and_ifndef/`](sepcomp_and_ifndef/) -- Compiling programs using multiple files
