@@ -103,9 +103,9 @@ int main(int argc, char *argv[]) {
 	 *
 	 * char string1[] = "your string"; // char array exactly fitting contents + '\0'
 	 *
-	 * If the strong won't be modified, you can use:
+	 * If the string won't be modified, you can use:
 	 *
-	 * char *string2 = "your string";
+	 * const char *string2 = "your string";
 	 *
 	 * For more on this weird issue, see: 
 	 * https://stackoverflow.com/questions/164194/why-do-i-get-a-segmentation-fault-when-writing-to-a-char-s-initialized-with-a
