@@ -21,12 +21,12 @@ int add_one_to_x(int x) {
 
 }
 
-/* The other way is to simply _declare_ the function... */
+/* The other way is to simply _declare_ the function... and then we can
+ * _define_ it elsewhere (see the bottom of this file for the code for
+ * sub_one_from_x() */
 
 int sub_one_from_x(int x);
 
-/* ... and then we can _define_ it elsewhere (see the bottom of this file for
- * the code for sub_one_from_x() */
 
 /****************************************
  * function parameters and return types *
@@ -50,7 +50,10 @@ float divide_float_by_int(float number, int divisor) {
 
 }
 
-/* what does this function do? what does it return? */
+/* Q: What does this function do? what does it return? 
+ * A: They take two chars, adds them together as 8-bit numbers, and returns the
+ * value.
+ * */
 
 char add_int_to_char(char a, int b) {
 

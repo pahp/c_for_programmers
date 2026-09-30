@@ -41,7 +41,8 @@ int main(int argc, char *argv[]) {
 
 	if (argc == 0) {
 
-		printf("Impossible. But lets us demo if, else if, and else.\n");
+		printf("Normally impossible, because argv[0] points to the command name.\n");
+		printf("However, checking this lets us demo if, else if, and else.\n");
 
 	} else if (argc == 1 ) {
 

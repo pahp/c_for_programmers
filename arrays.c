@@ -65,8 +65,17 @@ int main(int argc, char *argv[]) {
 	int intarray[10];       // this can hold an array of 10 ints
 	char chararray[10];     // this holds an array of 10 chars
 	float floatarray[10];   // this holds an array of 10 floats
+	
+	/* NOTE: Items declared on the _stack_ are guaranteed to be initialized to
+	 * numeric 0 or binary zero ('\0'). */
 
-	/* you can assign and the array as you would expect */
+	/* You can get the size of a _statically declared array_ */
+	printf("intarray uses %ld bytes of storage (10 * the size of int).\n", 
+		   sizeof(intarray));
+	/* NOTE: This does not work for malloc'ed space -- see void_and_casting.c
+	 * for more information. */
+
+	/* you can assign values to the array as you would expect */
 
 	intarray[0] = 0;
 	floatarray[0] = 3.14;
@@ -104,12 +113,12 @@ int main(int argc, char *argv[]) {
 	 * POINTER ARITHMETIC *
 	 * ********************/
 
-	/* Remember that arrays in C are just pointers. As a result, in addition to
+	/* Arrays and pointers in C are very similar. As a result, in addition to
 	 * bracket notation (e.g., array[n]) we can access array members by
 	 * calculating the address of the item we want and dereferencing it like a
 	 * pointer. This is commonly called "pointer arithmetic." Sometimes -- but
 	 * rarely -- this is the best way to access an array. We're showing this
-	 * too you so that you'll know what it is when you see it.
+	 * to you so that you'll know what it is when you see it.
 	 *
 	 * I can get the first character in chararray in the classic way:
 	 */
@@ -150,6 +159,44 @@ int main(int argc, char *argv[]) {
 	printf("*(intarray + 5) is %d\n", *(intarray + 5));
 
 	/* Remember, in general, it is better to use array[n] notation. */
+
+	/*******************************************
+	 * DIFFERENCES BETWEEN ARRAYS AND POINTERS *
+	 * ****************************************/
+
+	int somearray[10]; 			/* an array of 10 ints */
+	int *arrayptr = somearray; 	/* a pointer to somearray */
+
+	/* can assign to the array in different ways */
+	somearray[0] = 1;
+	arrayptr[1] = 2;
+	*(arrayptr + 2) = 3;
+	printf("somearray[0]: %d somearray[1]: %d somearray[2]: %d\n",
+		   somearray[0], somearray[1], somearray[2]);
+
+
+	/**********************************************
+	 * NO: assigning to an array without brackets *
+	 * *******************************************/
+
+	/* I CANNOT assign to somearray like a pointer -- this won't work */
+
+	// somearray = 0; /* uncomment and try to compile */
+	
+	/* This is for the best. The compiler knows that somearray is an array, but
+	 * it's not clear whether this should change the address array points to
+	 * (like a pointer) or whether it should assign 0 to somearray[0]. */
+
+
+	/* **************************************************
+	 * CAREFUL: using sizeof() with arrays vs. pointers *
+	 * *************************************************/
+
+	/* sizeof(somearray) returns the allocated space: */
+	printf("somearray uses %ld bytes of space.\n", sizeof(somearray));
+
+	/* sizeof(arrayptr) returns the size of the _pointer_ -- an address */
+	printf("The size of arrayptr is %ld bytes (even tho it points to somearray).\n", sizeof(arrayptr));
 
 	/******************************************
 	 * Passing arrays as a function parameter *

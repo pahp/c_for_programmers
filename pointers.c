@@ -34,10 +34,50 @@ int main(int argc, char *argv[]) {
 	/* To declare a pointer, use an asterisk: */
 	int *intpointer; 
 
-	/* let's print the value of intpointer: */
+	/*******************************
+	 * NULL and undefined pointers *
+	 * ****************************/
+
+	/* In general, pointers that are declared but have not yet been 
+	 * ASSIGNED to point at SOMETHING could point to _anything_ in memory. 
+	 * Therefore, you should never dereference a pointer that has not been
+	 * assigned. See more at:
+	 *
+	 * https://stackoverflow.com/questions/16015254/how-is-the-destination-that-an-uninitialized-pointer-in-c-points-to-determined
+	 */
+
+	/* You can assign a pointer the value NULL, which is equivalent to address
+	 * 0x0. This is called a "NULL pointer" (or nullptr) and is used to mean "a
+	 * pointer that points at nothing" (since address 0x0 is never [OK, not
+	 * normally] a valid address for a pointer).
+	 */
+
+	/* some examples */
+	printf("intpointer currently points at address: %p\n", intpointer);
+	printf("(but it could point at anything since it hasn't been defined!)\n");
+
+	intpointer = 0;
 	printf("intpointer currently points at address: %p\n", intpointer);
 
-	/* notice the *p symbol -- this is a memory address! */
+	intpointer = NULL;
+	printf("intpointer currently points at address: %p\n", intpointer);
+	/* notice the %p symbol in the printf()s -- this is a memory address! When
+	 * printed, a NULL pointer prints the value "(nil)" instead of an address.
+	 */
+
+	/* WARNING: If you dereference a NULL pointer, or an undefined pointer,
+	 * your program will almost certainly crash! */
+	/* uncomment the next line, recompile and run */
+	printf("Never dereference an undefined or NULL pointer!\n");
+	
+	/**********************************
+	 * how to check for NULL pointers *
+	 * *******************************/
+
+	if (intpointer == NULL) {
+		printf("intpointer is currently pointing to NULL!\n");
+	}
+
 	  
 	/* let's point intpointer at x */
 	intpointer = &x; // intpointer now points at the address of x

@@ -24,6 +24,9 @@
  * By convention, double quotes in an include indicate that the library is
  * local to the other source files, and not a system library, like stdio.h.
  *
+ * When you #include a file, the C preprocessor literally "copies and pastes"
+ * the contents of the included file into the current file before compiling.
+ *
  * To compile a program with multiple sources, you must name all the C files,
  * and one output file. The C files will be compiled and used to produce one
  * binary, e.g.:

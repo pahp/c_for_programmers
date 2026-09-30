@@ -103,6 +103,15 @@ int main(int argc, char *argv[]) {
 		printf("Integer %d is %d...\n", i, i);
 	}
 
+	/************************************************
+	 * sizeof() DOES NOT ALWAYS DO WHAT YOU EXPECT! *
+	 * *********************************************/
+	
+	printf("\n");
+	printf("10 ints require %ld bytes to store, ", sizeof(int) * 10);
+	printf("but the size of ten_ints is: %ld\n", sizeof(ten_ints));
+	printf("(The size of a pointer is the size of an address, not the alloc'ed space!)\n");
+
 
 	/********************
 	 * free()ing memory *

@@ -3,9 +3,9 @@
 
 /* what is this ifndef, define, and endif stuff?
  *
- * It's not good to import function declarations more than once (because it
- * will appear to the compiler that you're declaring multiple things with the
- * same names). 
+ * It's not good to import function declarations more than once because the C
+ * preprocessor will copy it multiple times which will result in you declaring
+ * the same thing multiple times (which is a nono).
  *
  * #ifndef FOO means, "if FOO is NOT DEFINED as a macro, do the stuff between
  * this line and the next #endif." 

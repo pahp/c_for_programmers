@@ -68,6 +68,9 @@ int main(int argc, char *argv[]) {
 	character = 'c'; // assigning the numeric value of character 'c'
 	character = 57;  // assigning the number 57 (which fits into 8 bits)
 	
+	/* NOTE: Items declared on the _stack_ are guaranteed to be initialized to
+	 * numeric 0 or binary zero ('\0'). */
+	
 	/* NOTE: Strings are arrays of characters that end with a special byte.
 	 * We will discuss them later. */
 
